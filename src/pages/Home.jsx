@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { getCategories } from '../services/api';
+import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
+import Products from '../components/Products';
 
 export default class Home extends Component {
   state = {
     categoriesList: [],
+    searchValue: '',
+    categoryId: '',
+    productList: [],
   }
 
   componentDidMount() {
@@ -16,9 +20,19 @@ export default class Home extends Component {
     this.setState({ categoriesList });
   }
 
+  handleChange = ({ target: { value } }) => {
+    this.setState({ searchValue: value });
+  }
+
+  handleClick = async () => {
+    const { searchValue, categoryId } = this.state;
+    const getProducts = await getProductsFromCategoryAndQuery(categoryId, searchValue);
+    this.setState({ productList: getProducts.results });
+  }
+
   render() {
-    const { categoriesList } = this.state;
-    /*       console.log(this.state.categoriesList); */
+    const { categoriesList, searchValue, productList } = this.state;
+    console.log(productList);
     return (
       <div>
         <nav>
@@ -38,10 +52,19 @@ export default class Home extends Component {
           <input
             type="text"
             name="search"
+            value={ searchValue }
+            data-testid="query-input"
+            onChange={ this.handleChange }
           />
+          <button type="button" data-testid="query-button" onClick={ this.handleClick }>
+            Pesquisar
+          </button>
           <p data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
           </p>
+          { productList.map((objProduct) => (
+            <Products key={ objProduct.id } objProduct={ objProduct } />
+          )) }
         </div>
       </div>
     );
