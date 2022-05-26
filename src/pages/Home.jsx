@@ -80,7 +80,7 @@ export default class Home extends Component {
           </section>
           <section className="productList">
             { !isClicked && (
-              <p data-testid="home-initial-message">
+              <p id="home-initial-message" data-testid="home-initial-message">
                 Digite algum termo de pesquisa ou escolha uma categoria.
               </p>)}
             { isLoading ? <Loading /> : productList.map((objProduct) => (

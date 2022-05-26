@@ -114,6 +114,12 @@ nav {
   width: fit-content;
 }
 
+#home-initial-message {
+  font-size: 1.4rem;
+  letter-spacing: 1.2px;
+  font-weight: 100;
+}
+
 .productList {
   display: flex;
   flex-wrap: wrap;
@@ -121,4 +127,5 @@ nav {
   justify-content: center;
   width: calc(100% - 210px);
   margin: auto;
+  height: fit-content;
 }
