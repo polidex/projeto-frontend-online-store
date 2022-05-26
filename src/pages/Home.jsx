@@ -37,7 +37,25 @@ export default class Home extends Component {
     return (
       <div>
         <nav>
-          <Link data-testid="shopping-cart-button" to="/cart">
+          <div className="input_container">
+            <input
+              type="text"
+              name="search"
+              value={ searchValue }
+              data-testid="query-input"
+              placeholder="Buscar produtos, marcas e muito mais"
+              onChange={ this.handleChange }
+            />
+            <button
+              type="button"
+              id="search-alt-2"
+              data-testid="query-button"
+              onClick={ this.handleClick }
+            >
+              <box-icon name="search-alt-2" />
+            </button>
+          </div>
+          <Link id="cart_link" data-testid="shopping-cart-button" to="/cart">
             <box-icon name="cart" />
             <div className="cart_spans">
               <span>Carrinho de</span>
@@ -57,20 +75,6 @@ export default class Home extends Component {
           </ul>
         </div>
         <div>
-          <input
-            type="text"
-            name="search"
-            value={ searchValue }
-            data-testid="query-input"
-            onChange={ this.handleChange }
-          />
-          <button
-            type="button"
-            data-testid="query-button"
-            onClick={ this.handleClick }
-          >
-            Pesquisar
-          </button>
           <p data-testid="home-initial-message">
             Digite algum termo de pesquisa ou escolha uma categoria.
           </p>
