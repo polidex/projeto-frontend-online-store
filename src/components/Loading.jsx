@@ -8,7 +8,7 @@ class Loading extends React.Component {
         autoplay
         loop
         src="https://assets6.lottiefiles.com/datafiles/arIrMB5WY4Uhhgv0OuShBLzoAt9AnrzQCh9Z5wjW/spinner loading/data.json"
-        speed={ 4 }
+        speed={ 2 }
       />
     );
   }
