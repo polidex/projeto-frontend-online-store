@@ -52,7 +52,7 @@ export default class Home extends Component {
               data-testid="query-button"
               onClick={ this.handleClick }
             >
-              <box-icon name="search-alt-2" />
+              <box-icon name="search" />
             </button>
           </div>
           <Link id="cart_link" data-testid="shopping-cart-button" to="/cart">
@@ -63,24 +63,25 @@ export default class Home extends Component {
             </div>
           </Link>
         </nav>
-        <div className="categories">
-          <ul>
-            {/* npx create-react-app react-multilevel-dropdown-menu --> dropdown ideia */}
-            Categorias
-            {categoriesList.map((category) => (
-              <li key={ category.id }>
-                <button data-testid="category" type="button">{ category.name }</button>
-              </li>
-            ))}
-          </ul>
-        </div>
-        <div>
-          <p data-testid="home-initial-message">
-            Digite algum termo de pesquisa ou escolha uma categoria.
-          </p>
-          { productList.map((objProduct) => (
-            <Products key={ objProduct.id } objProduct={ objProduct } />
-          )) }
+        <div className="main-content">
+          <section className="categories">
+            <ul>
+              Categorias
+              {categoriesList.map((category) => (
+                <li key={ category.id }>
+                  <button data-testid="category" type="button">{ category.name }</button>
+                </li>
+              ))}
+            </ul>
+          </section>
+          <section className="productList">
+            <p data-testid="home-initial-message">
+              Digite algum termo de pesquisa ou escolha uma categoria.
+            </p>
+            { productList.map((objProduct) => (
+              <Products key={ objProduct.id } objProduct={ objProduct } />
+            )) }
+          </section>
         </div>
       </div>
     );
