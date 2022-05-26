@@ -35,6 +35,11 @@ export default class Home extends Component {
     this.setState({ productList: getProducts.results, isLoading: false });
   }
 
+  getCategoryId = async ({ target }) => {
+    const { name } = target;
+    this.setState({ categoryId: name });
+  }
+
   render() {
     const { categoriesList, searchValue, productList, isLoading, isClicked } = this.state;
     console.log(productList);
@@ -73,7 +78,14 @@ export default class Home extends Component {
               Categorias
               {categoriesList.map((category) => (
                 <li key={ category.id }>
-                  <button data-testid="category" type="button">{ category.name }</button>
+                  <button
+                    onClick={ this.getCategoryId }
+                    name={ category.id }
+                    data-testid="category"
+                    type="button"
+                  >
+                    { category.name }
+                  </button>
                 </li>
               ))}
             </ul>
