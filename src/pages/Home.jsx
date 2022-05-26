@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import Products from '../components/Products';
 import 'boxicons';
-import Loading from '../components/Loading';
+// import Loading from '../components/Loading';
 
 export default class Home extends Component {
   state = {
@@ -83,7 +83,7 @@ export default class Home extends Component {
               <p id="home-initial-message" data-testid="home-initial-message">
                 Digite algum termo de pesquisa ou escolha uma categoria.
               </p>)}
-            { isLoading ? <Loading /> : productList.map((objProduct) => (
+            { isLoading ? <p>Carregando</p> : productList.map((objProduct) => (
               <Products key={ objProduct.id } objProduct={ objProduct } />
             )) }
           </section>
