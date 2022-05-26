@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import Products from '../components/Products';
+import 'boxicons';
 
 export default class Home extends Component {
   state = {
@@ -36,10 +37,17 @@ export default class Home extends Component {
     return (
       <div>
         <nav>
-          <Link data-testid="shopping-cart-button" to="/cart">Carrinho</Link>
+          <Link data-testid="shopping-cart-button" to="/cart">
+            <box-icon name="cart" />
+            <div className="cart_spans">
+              <span>Carrinho de</span>
+              <span>COMPRAS</span>
+            </div>
+          </Link>
         </nav>
         <div className="categories">
           <ul>
+            {/* npx create-react-app react-multilevel-dropdown-menu --> dropdown ideia */}
             Categorias
             {categoriesList.map((category) => (
               <li key={ category.id }>
@@ -56,7 +64,11 @@ export default class Home extends Component {
             data-testid="query-input"
             onChange={ this.handleChange }
           />
-          <button type="button" data-testid="query-button" onClick={ this.handleClick }>
+          <button
+            type="button"
+            data-testid="query-button"
+            onClick={ this.handleClick }
+          >
             Pesquisar
           </button>
           <p data-testid="home-initial-message">
