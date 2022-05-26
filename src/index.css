@@ -97,14 +97,28 @@ nav {
 .main-content {
   display: flex;
   width: 96vw;
-  background-color: red;
+  background-color: #ffd862;
   margin: 0 auto;
+  padding: 8px;
 }
 
 .categories {
-  background-color: blue;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 40px;
+  padding: 12px;
+  margin-right: 12px;
+  width: fit-content;
 }
 
 .productList {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  width: calc(100% - 210px);
   margin: auto;
 }

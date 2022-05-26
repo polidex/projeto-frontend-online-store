@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import Products from '../components/Products';
 import 'boxicons';
+import Loading from '../components/Loading';
 
 export default class Home extends Component {
   state = {
@@ -10,6 +11,8 @@ export default class Home extends Component {
     searchValue: '',
     categoryId: '',
     productList: [],
+    isLoading: false,
+    isClicked: false,
   }
 
   componentDidMount() {
@@ -27,12 +30,13 @@ export default class Home extends Component {
 
   handleClick = async () => {
     const { searchValue, categoryId } = this.state;
+    this.setState({ isLoading: true, isClicked: true });
     const getProducts = await getProductsFromCategoryAndQuery(categoryId, searchValue);
-    this.setState({ productList: getProducts.results });
+    this.setState({ productList: getProducts.results, isLoading: false });
   }
 
   render() {
-    const { categoriesList, searchValue, productList } = this.state;
+    const { categoriesList, searchValue, productList, isLoading, isClicked } = this.state;
     console.log(productList);
     return (
       <div>
@@ -75,10 +79,11 @@ export default class Home extends Component {
             </ul>
           </section>
           <section className="productList">
-            <p data-testid="home-initial-message">
-              Digite algum termo de pesquisa ou escolha uma categoria.
-            </p>
-            { productList.map((objProduct) => (
+            { !isClicked && (
+              <p data-testid="home-initial-message">
+                Digite algum termo de pesquisa ou escolha uma categoria.
+              </p>)}
+            { isLoading ? <Loading /> : productList.map((objProduct) => (
               <Products key={ objProduct.id } objProduct={ objProduct } />
             )) }
           </section>
