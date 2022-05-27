@@ -15,7 +15,11 @@ class Products extends Component {
 }
 
 Products.propTypes = {
-  objProduct: PropTypes.objectOf.isRequired,
+  objProduct: PropTypes.shape({
+    title: PropTypes.string,
+    thumbnail: PropTypes.string,
+    price: PropTypes.number,
+  }).isRequired,
 };
 
 export default Products;

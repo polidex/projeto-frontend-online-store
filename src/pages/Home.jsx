@@ -37,13 +37,13 @@ export default class Home extends Component {
 
   getCategoryItems = async ({ target }) => {
     const { name } = target;
+    this.setState({ isLoading: true, isClicked: true });
     const getProducts = await getProductsFromCategory(name);
-    console.log(getProducts.results);
+    this.setState({ productList: getProducts.results, isLoading: false });
   }
 
   render() {
     const { categoriesList, searchValue, productList, isLoading, isClicked } = this.state;
-    console.log(categoriesList);
     return (
       <div>
         <nav>
