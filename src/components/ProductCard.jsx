@@ -4,17 +4,40 @@ import '../stylesheets/ProductCard.css';
 import { Link } from 'react-router-dom';
 
 export default class ProductCard extends Component {
+  state = {
+    isFocused: false,
+  }
+
+  handleClick = () => {
+
+  }
+
+  addFocus = () => {
+    this.setState({ isFocused: true });
+  }
+
+  removeFocus = () => {
+    this.setState({ isFocused: false });
+  }
+
   render() {
     let price = 'sem preço'; // criei esta let porque tava dando erro em alguns produtos que não tinham preço
     const { objProduct } = this.props;
+    const { isFocused } = this.state;
     if (objProduct.price) {
       price = objProduct
         .price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
     }
-
     return (
-      <div className="product-container" data-testid="product">
+      <div
+        className="product-container"
+        data-testid="product"
+      >
         <Link
+          onFocus={ this.addFocus }
+          onBlur={ this.removeFocus }
+          onMouseEnter={ this.addFocus }
+          onMouseLeave={ this.removeFocus }
           to={ `/product/${objProduct.id}` }
           className="product_item"
           data-testid="product-detail-link"
@@ -26,10 +49,15 @@ export default class ProductCard extends Component {
         <button
           className="add_to_cart_btn"
           type="button"
-          onClick={ () => console.log('cliquei') }
+          onClick={ this.handleClick }
         >
           Adicionar ao carrinho
         </button>
+        <span
+          className={ isFocused ? 'more_info active' : 'more_info' }
+        >
+          Ver detalhes do produto
+        </span>
       </div>
     );
   }

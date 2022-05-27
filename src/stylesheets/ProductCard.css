@@ -42,8 +42,8 @@
 
 .add_to_cart_btn {
   align-self: center;
-  background-color: #1c6b83;
-  border: 1px solid #bfd3da;
+  background-color: rgb(20, 20, 20);
+  border: 1px solid rgb(20, 20, 20);
   border-radius: 4px;
   bottom: -16px;
   box-sizing: border-box;
@@ -78,4 +78,17 @@
 .add_to_cart_btn:active {
   background-color: rgb(0, 57, 215);
   border-color: rgb(0, 57, 215);
+}
+
+.more_info {
+  background-color: black;
+  color: white;
+  display: none;
+  font-size: 12px;
+  padding: 6px;
+  position: absolute;
+}
+
+.active {
+  display: block;
 }
