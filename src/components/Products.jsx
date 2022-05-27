@@ -9,7 +9,7 @@ class Products extends Component {
       <div className="product_item" data-testid="product">
         <span>{ objProduct.title }</span>
         <img src={ objProduct.thumbnail } alt={ `Imagem de ${objProduct.title}` } />
-        <p>{ `Valor R$ ${objProduct.price}` }</p>
+        <p>{ `Valor ${objProduct.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}` }</p>
       </div>
     );
   }
