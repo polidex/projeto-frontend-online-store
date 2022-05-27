@@ -4,6 +4,7 @@ import { getCategories, getProductsFromCategory,
   getProductsFromCategoryAndQuery } from '../services/api';
 import Products from '../components/Products';
 import 'boxicons';
+import '../stylesheets/Home.css';
 // import Loading from '../components/Loading';
 
 export default class Home extends Component {
