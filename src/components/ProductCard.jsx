@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import '../stylesheets/Products.css';
+import '../stylesheets/ProductCard.css';
 import { Link } from 'react-router-dom';
 
 export default class ProductCard extends Component {
@@ -13,7 +13,7 @@ export default class ProductCard extends Component {
     }
 
     return (
-      <div data-testid="product">
+      <div className="product-container" data-testid="product">
         <Link
           to={ `/product/${objProduct.id}` }
           className="product_item"
@@ -23,6 +23,13 @@ export default class ProductCard extends Component {
           <img src={ objProduct.thumbnail } alt={ `Imagem de ${objProduct.title}` } />
           <p>{ `Valor ${price}` }</p>
         </Link>
+        <button
+          className="add_to_cart_btn"
+          type="button"
+          onClick={ () => console.log('cliquei') }
+        >
+          Adicionar ao carrinho
+        </button>
       </div>
     );
   }
