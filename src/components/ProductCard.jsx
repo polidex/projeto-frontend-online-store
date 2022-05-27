@@ -5,12 +5,15 @@ import { Link } from 'react-router-dom';
 
 export default class ProductCard extends Component {
   render() {
+    let price = 'sem preço'; // criei esta let porque tava dando erro em alguns produtos que não tinham preço
     const { objProduct } = this.props;
-    const price = objProduct
-      .price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    if (objProduct.price) {
+      price = objProduct
+        .price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+    }
 
     return (
-      <div data-testid="product" className="product_item">
+      <div data-testid="product">
         <Link
           to={ `/product/${objProduct.id}` }
           className="product_item"
