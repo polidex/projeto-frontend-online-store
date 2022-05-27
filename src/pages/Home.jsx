@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { getCategories, getProductsFromCategory,
   getProductsFromCategoryAndQuery } from '../services/api';
-import Products from '../components/Products';
+import ProductCard from '../components/ProductCard';
 import 'boxicons';
 import '../stylesheets/Home.css';
 // import Loading from '../components/Loading';
@@ -98,7 +98,10 @@ export default class Home extends Component {
                 Digite algum termo de pesquisa ou escolha uma categoria.
               </p>)}
             { isLoading ? <p>Carregando</p> : productList.map((objProduct) => (
-              <Products key={ objProduct.id } objProduct={ objProduct } />
+              <ProductCard
+                key={ objProduct.id }
+                objProduct={ objProduct }
+              />
             )) }
           </section>
         </div>
