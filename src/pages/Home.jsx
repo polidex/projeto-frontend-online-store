@@ -1,15 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
+import { getCategories, getProductsFromCategory,
+  getProductsFromCategoryAndQuery } from '../services/api';
 import Products from '../components/Products';
 import 'boxicons';
+import '../stylesheets/Home.css';
 // import Loading from '../components/Loading';
 
 export default class Home extends Component {
   state = {
     categoriesList: [],
     searchValue: '',
-    categoryId: '',
     productList: [],
     isLoading: false,
     isClicked: false,
@@ -35,14 +36,15 @@ export default class Home extends Component {
     this.setState({ productList: getProducts.results, isLoading: false });
   }
 
-  getCategoryId = async ({ target }) => {
+  getCategoryItems = async ({ target }) => {
     const { name } = target;
-    this.setState({ categoryId: name });
+    this.setState({ isLoading: true, isClicked: true });
+    const getProducts = await getProductsFromCategory(name);
+    this.setState({ productList: getProducts.results, isLoading: false });
   }
 
   render() {
     const { categoriesList, searchValue, productList, isLoading, isClicked } = this.state;
-    console.log(productList);
     return (
       <div>
         <nav>
@@ -79,7 +81,7 @@ export default class Home extends Component {
               {categoriesList.map((category) => (
                 <li key={ category.id }>
                   <button
-                    onClick={ this.getCategoryId }
+                    onClick={ this.getCategoryItems }
                     name={ category.id }
                     data-testid="category"
                     type="button"

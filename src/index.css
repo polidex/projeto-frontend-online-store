@@ -97,7 +97,7 @@ nav {
 .main-content {
   display: flex;
   width: 96vw;
-  background-color: #ffd862;
+  background-color: #ffdf7eef;
   margin: 0 auto;
   padding: 8px;
 }
@@ -108,10 +108,14 @@ nav {
   background-color: white;
   align-items: center;
   justify-content: flex-start;
-  gap: 40px;
-  padding: 12px;
+  padding: 18px 12px;
   margin-right: 12px;
+  height: fit-content;
   width: fit-content;
+}
+
+.categories button {
+  margin-top: 4px;
 }
 
 #home-initial-message {
