@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { getCategories, getProductsFromCategory,
   getProductsFromCategoryAndQuery } from '../services/api';
 import ProductCard from '../components/ProductCard';
 import 'boxicons';
 import '../stylesheets/Home.css';
+import CartLink from '../components/CartLink';
 // import Loading from '../components/Loading';
 
 export default class Home extends Component {
@@ -66,13 +66,7 @@ export default class Home extends Component {
               <box-icon name="search" />
             </button>
           </div>
-          <Link id="cart_link" data-testid="shopping-cart-button" to="/cart">
-            <box-icon name="cart" />
-            <div className="cart_spans">
-              <span>Carrinho de</span>
-              <span>COMPRAS</span>
-            </div>
-          </Link>
+          <CartLink />
         </nav>
         <div className="main-content">
           <section className="categories">
