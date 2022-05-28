@@ -95,7 +95,7 @@ export default class Home extends Component {
               <box-icon name="search" />
             </button>
           </div>
-          <CartLink cartQuantity={ 2 } />
+          <CartLink cartQuantity={ 1000 } />
         </nav>
         <p className="our_categories">NOSSAS CATEGORIAS</p>
         {/* <Carousel
