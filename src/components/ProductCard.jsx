@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import '../stylesheets/ProductCard.css';
 import { Link } from 'react-router-dom';
+import { saveItems } from '../services/saveItems';
 
 export default class ProductCard extends Component {
   state = {
@@ -9,7 +10,8 @@ export default class ProductCard extends Component {
   }
 
   handleClick = () => {
-
+    const { objProduct } = this.props;
+    saveItems(objProduct);
   }
 
   addFocus = () => {
