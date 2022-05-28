@@ -7,6 +7,7 @@ import 'boxicons';
 import '../stylesheets/Home.css';
 import CartLink from '../components/CartLink';
 import Category from '../components/Category';
+import { getItems } from '../services/saveItems';
 // import 'react-multi-carousel/lib/styles.css';
 // import Loading from '../components/Loading';
 
@@ -41,12 +42,19 @@ export default class Home extends Component {
     categoriesList: [],
     searchValue: '',
     productList: [],
+    cartQuantity: 0,
     isLoading: false,
     isClicked: false,
   }
 
   componentDidMount() {
     this.fetchCategories();
+    this.getCartItems();
+  }
+
+  getCartItems = () => {
+    const cartItems = getItems();
+    this.setState({ cartQuantity: cartItems.length });
   }
 
   fetchCategories = async () => {
@@ -73,7 +81,8 @@ export default class Home extends Component {
   }
 
   render() {
-    const { categoriesList, searchValue, productList, isLoading, isClicked } = this.state;
+    const { categoriesList, searchValue,
+      productList, isLoading, isClicked, cartQuantity } = this.state;
     return (
       <div>
         <nav>
@@ -95,7 +104,7 @@ export default class Home extends Component {
               <box-icon name="search" />
             </button>
           </div>
-          <CartLink cartQuantity={ 1000 } />
+          <CartLink cartQuantity={ cartQuantity } />
         </nav>
         <p className="our_categories">NOSSAS CATEGORIAS</p>
         {/* <Carousel
@@ -129,6 +138,7 @@ export default class Home extends Component {
               <ProductCard
                 key={ objProduct.id }
                 objProduct={ objProduct }
+                getCartItems={ this.getCartItems }
               />
             ))/* trocar <p>Carregando</p> por <Loading /> quando finalizar projeto */}
           </section>
