@@ -2,7 +2,10 @@ const LOCAL_STORAGE_KEY = 'listOfItems';
 
 export function getItems() {
   const response = JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY));
-  return response;
+  if (response) {
+    return response;
+  }
+  return [];
 }
 
 export function saveItems(item) {

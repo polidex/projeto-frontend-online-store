@@ -20,7 +20,7 @@ export default class ProductDetails extends React.Component {
   }
 
   render() {
-  /*     console.log('log do state', this.state.product); */
+    // console.log('log do state', this.state.product);
     const { product } = this.state;
     return (
       <div data-testid="product">
