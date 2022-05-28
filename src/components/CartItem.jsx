@@ -51,7 +51,14 @@ export default class CartItem extends React.Component {
           <img src={ thumbnail } alt={ `Imagem do produto ${id}` } />
           <p data-testid="shopping-cart-product-name">{title}</p>
           <span data-testid="shopping-cart-product-quantity">{productCount}</span>
-          <button type="button" name="add" onClick={ this.handleClick }>+</button>
+          <button
+            data-testid="product-increase-quantity"
+            type="button"
+            name="add"
+            onClick={ this.handleClick }
+          >
+            +
+          </button>
           <button type="button" name="remove" onClick={ this.handleClick }>-</button>
         </div>)
     );

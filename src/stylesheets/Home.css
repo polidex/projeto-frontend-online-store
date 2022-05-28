@@ -3,3 +3,39 @@
   flex-wrap: wrap;
   gap: 20px;
 }
+
+.categories {
+  display: flex;
+  margin: 0 auto;
+  max-width: 96vw;
+  padding: 18px 12px;
+}
+
+.categories_button {
+  background-color: #141414;
+  border: none;
+  border-radius: 50%;
+  color: white;
+  cursor: pointer;
+  font-size: 10px;
+  height: 85px;
+  margin-top: 4px;
+  width: 85px;
+}
+
+.our_categories {
+  font-weight: 300;
+  letter-spacing: 3px;
+  margin-top: 24px;
+  text-align: center;
+}
+
+.main-content {
+
+  /* background-color: #ffdf7eef; */
+  display: flex;
+  margin: 12px auto;
+  min-height: 63vh;
+  padding: 8px;
+  width: 96vw;
+}

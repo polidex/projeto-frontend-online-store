@@ -94,30 +94,6 @@ nav {
   box-shadow: 0 2px 2px 0 rgba(0,0,0,.1);
 }
 
-.main-content {
-  display: flex;
-  width: 96vw;
-  background-color: #ffdf7eef;
-  margin: 0 auto;
-  padding: 8px;
-}
-
-.categories {
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 18px 12px;
-  margin-right: 12px;
-  height: fit-content;
-  width: fit-content;
-}
-
-.categories button {
-  margin-top: 4px;
-}
-
 #home-initial-message {
   font-size: 1.4rem;
   letter-spacing: 1.2px;
