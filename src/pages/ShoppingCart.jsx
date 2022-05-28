@@ -1,5 +1,5 @@
 import React from 'react';
-import ProductCard from '../components/ProductCard';
+import CartItem from '../components/CartItem';
 import { getItems } from '../services/saveItems';
 
 export default class ShoppingCart extends React.Component {
@@ -23,9 +23,9 @@ export default class ShoppingCart extends React.Component {
         && <span data-testid="shopping-cart-empty-message">Seu carrinho está vazio</span>}
         {cartItems.length > 0
         && cartItems.map((cartItem) => (
-          <ProductCard
+          <CartItem
             key={ cartItem.id }
-            objProduct={ cartItem }
+            cartItem={ cartItem }
           />))}
       </div>
     );

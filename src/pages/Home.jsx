@@ -44,7 +44,6 @@ export default class Home extends Component {
   }
 
   render() {
-    console.log(this.props);
     const { categoriesList, searchValue, productList, isLoading, isClicked } = this.state;
     return (
       <div>

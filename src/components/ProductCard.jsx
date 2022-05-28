@@ -51,6 +51,7 @@ export default class ProductCard extends Component {
         <button
           className="add_to_cart_btn"
           type="button"
+          data-testid="product-add-to-cart"
           onClick={ this.handleClick }
         >
           Adicionar ao carrinho
