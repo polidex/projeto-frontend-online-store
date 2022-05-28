@@ -1,18 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { addSameItem, getItems, removeItem } from '../services/saveItems';
+import { getProductFromId } from '../services/api';
 
 export default class CartItem extends React.Component {
   state = {
     productCount: 0,
+    product: {},
   }
 
   componentDidMount() {
-    this.productCounter();
+    const { qtd } = this.props;
+    this.getProduct();
+    this.setState({ productCount: qtd });
+  }
+
+  getProduct = async () => {
+    const { id } = this.props;
+    const product = await getProductFromId(id);
+    this.setState({ product });
   }
 
   productCounter = () => {
-    const { cartItem: { id } } = this.props;
+    const { id } = this.props;
     const cartItems = getItems();
     this.setState({ productCount: cartItems ? cartItems
       .filter((item) => item.id === id).length : 0 });
@@ -20,20 +30,20 @@ export default class CartItem extends React.Component {
 
   handleClick = ({ target }) => {
     const { name } = target;
-    const { productCount } = this.state;
-    const { cartItem } = this.props;
+    const { productCount, product } = this.state;
+    const { getCartItems } = this.props;
     if (name === 'add') {
-      addSameItem(cartItem);
+      addSameItem(product);
     }
     if (name === 'remove' && productCount > 0) {
-      removeItem(cartItem);
+      removeItem(product);
     }
+    getCartItems();
     this.productCounter();
   }
 
   render() {
-    const { productCount } = this.state;
-    const { cartItem: { thumbnail, id, title } } = this.props;
+    const { productCount, product: { thumbnail, id, title } } = this.state;
     return (
       productCount > 0
       && (
@@ -49,9 +59,7 @@ export default class CartItem extends React.Component {
 }
 
 CartItem.propTypes = {
-  cartItem: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    thumbnail: PropTypes.string.isRequired,
-    title: PropTypes.string.isRequired,
-  }).isRequired,
+  id: PropTypes.string.isRequired,
+  qtd: PropTypes.number.isRequired,
+  getCartItems: PropTypes.func.isRequired,
 };
