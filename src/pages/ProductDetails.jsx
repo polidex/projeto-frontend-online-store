@@ -3,14 +3,22 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { getProductFromId } from '../services/api';
 import CartLink from '../components/CartLink';
+import { getItems } from '../services/saveItems';
 
 export default class ProductDetails extends React.Component {
   state = {
     product: {},
+    cartQuantity: 0,
   }
 
   componentDidMount() {
     this.getProduct();
+    this.getCartItems();
+  }
+
+  getCartItems = () => {
+    const cartItems = getItems();
+    this.setState({ cartQuantity: cartItems.length });
   }
 
   getProduct = async () => {
@@ -21,7 +29,8 @@ export default class ProductDetails extends React.Component {
 
   render() {
     // console.log('log do state', this.state.product);
-    const { product } = this.state;
+    const { product, cartQuantity } = this.state;
+
     return (
       <div data-testid="product">
         <nav>
@@ -30,7 +39,7 @@ export default class ProductDetails extends React.Component {
               Voltar a tela inicial
             </Link>
           </div>
-          <CartLink />
+          <CartLink cartQuantity={ cartQuantity } />
         </nav>
         <h1>Product Details</h1>
         <p data-testid="product-detail-name">{ product.title }</p>

@@ -10,8 +10,9 @@ export default class ProductCard extends Component {
   }
 
   handleClick = () => {
-    const { objProduct } = this.props;
+    const { objProduct, getCartItems } = this.props;
     saveItems(objProduct);
+    getCartItems();
   }
 
   addFocus = () => {
@@ -67,6 +68,7 @@ export default class ProductCard extends Component {
 }
 
 ProductCard.propTypes = {
+  getCartItems: PropTypes.func.isRequired,
   objProduct: PropTypes.shape({
     title: PropTypes.string,
     thumbnail: PropTypes.string,

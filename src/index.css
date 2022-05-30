@@ -10,6 +10,23 @@ a {
   align-items: center;
   color: #141414;
   text-decoration: inherit;
+  position: relative;
+}
+
+.cart_quantity {
+  bottom: -8px;
+  left: -8px;
+  font-size: 10px;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  border-radius: 50%;
+  background-color: #141414;
+  width: 24px;
+  height: 24px;
+  color: white;
 }
 
 ol, ul {
@@ -92,30 +109,6 @@ nav {
 
 #cart_link:hover {
   box-shadow: 0 2px 2px 0 rgba(0,0,0,.1);
-}
-
-.main-content {
-  display: flex;
-  width: 96vw;
-  background-color: #ffdf7eef;
-  margin: 0 auto;
-  padding: 8px;
-}
-
-.categories {
-  display: flex;
-  flex-direction: column;
-  background-color: white;
-  align-items: center;
-  justify-content: flex-start;
-  padding: 18px 12px;
-  margin-right: 12px;
-  height: fit-content;
-  width: fit-content;
-}
-
-.categories button {
-  margin-top: 4px;
 }
 
 #home-initial-message {
