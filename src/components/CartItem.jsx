@@ -18,6 +18,7 @@ export default class CartItem extends React.Component {
   getProduct = async () => {
     const { id } = this.props;
     const product = await getProductFromId(id);
+    console.log(product);
     this.setState({ product });
   }
 
@@ -31,14 +32,14 @@ export default class CartItem extends React.Component {
   handleClick = ({ target }) => {
     const { name } = target;
     const { productCount, product } = this.state;
-    const { getCartItems } = this.props;
+    // const { getCartItems } = this.props;
     if (name === 'add') {
       addSameItem(product);
     }
-    if (name === 'remove' && productCount > 0) {
+    if (name === 'remove' && productCount > 1) {
       removeItem(product);
     }
-    getCartItems();
+    // getCartItems();
     this.productCounter();
   }
 
@@ -59,7 +60,14 @@ export default class CartItem extends React.Component {
           >
             +
           </button>
-          <button type="button" name="remove" onClick={ this.handleClick }>-</button>
+          <button
+            data-testid="product-decrease-quantity"
+            type="button"
+            name="remove"
+            onClick={ this.handleClick }
+          >
+            -
+          </button>
         </div>)
     );
   }
@@ -68,5 +76,5 @@ export default class CartItem extends React.Component {
 CartItem.propTypes = {
   id: PropTypes.string.isRequired,
   qtd: PropTypes.number.isRequired,
-  getCartItems: PropTypes.func.isRequired,
+  // getCartItems: PropTypes.func.isRequired,
 };

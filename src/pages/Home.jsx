@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 // import Carousel from 'react-multi-carousel';
-import { getCategories, getProductsFromCategory,
-  getProductsFromCategoryAndQuery } from '../services/api';
+import { getCategories, getProductsFromCategoryAndQuery } from '../services/api';
 import ProductCard from '../components/ProductCard';
 import 'boxicons';
 import '../stylesheets/Home.css';
@@ -76,7 +75,7 @@ export default class Home extends Component {
   getCategoryItems = async ({ target }) => {
     const { name } = target;
     this.setState({ isLoading: true, isClicked: true });
-    const getProducts = await getProductsFromCategory(name);
+    const getProducts = await getProductsFromCategoryAndQuery(name);
     this.setState({ productList: getProducts.results, isLoading: false });
   }
 
