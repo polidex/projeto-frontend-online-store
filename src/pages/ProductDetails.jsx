@@ -3,7 +3,8 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import { getProductFromId } from '../services/api';
 import CartLink from '../components/CartLink';
-import { getItems } from '../services/saveItems';
+import { getItems, saveItems } from '../services/saveItems';
+import '../stylesheets/ProductDetails.css';
 
 export default class ProductDetails extends React.Component {
   state = {
@@ -27,6 +28,12 @@ export default class ProductDetails extends React.Component {
     this.setState({ product });
   }
 
+  handleClick = () => {
+    const { product } = this.state;
+    saveItems(product);
+    this.getCartItems();
+  }
+
   render() {
     // console.log('log do state', this.state.product);
     const { product, cartQuantity } = this.state;
@@ -45,6 +52,14 @@ export default class ProductDetails extends React.Component {
         <p data-testid="product-detail-name">{ product.title }</p>
         <p>{ product.price }</p>
         <img alt="imagem do produto" src={ product.thumbnail } />
+        <button
+          className="add_to_cart_btn_details"
+          type="button"
+          data-testid="product-detail-add-to-cart"
+          onClick={ this.handleClick }
+        >
+          Adicionar ao carrinho
+        </button>
       </div>
     );
   }
