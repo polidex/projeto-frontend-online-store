@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import CartItem from '../components/CartItem';
 import { getItems } from '../services/saveItems';
 
@@ -42,6 +43,12 @@ export default class ShoppingCart extends React.Component {
             cartItem={ cartItem }
             getCartItems={ this.getCartItems }
           />))}
+        <Link
+          to="/checkout-products"
+          data-testid="checkout-products"
+        >
+          Finalizar Compra
+        </Link>
       </div>
     );
   }
