@@ -15,13 +15,16 @@ export default class ShoppingCart extends React.Component {
     const items = getItems();
     const cartItems = items.reduce((acc, cur) => {
       const { id } = cur;
-      if (Object.keys(acc).includes(id)) {
-        acc[id] += 1;
-      } else {
-        acc[id] = 1;
+      const index = acc.findIndex((item) => item.id === id);
+      const magicNumber = -1;
+      if (index > magicNumber) {
+        acc[index].qtdCart += 1;
+        return acc;
       }
+      cur.qtdCart = 1;
+      acc = [...acc, cur];
       return acc;
-    }, {});
+    }, []);
     this.setState({ cartItems });
   }
 
@@ -33,11 +36,10 @@ export default class ShoppingCart extends React.Component {
         {cartValues.length === 0
         && <span data-testid="shopping-cart-empty-message">Seu carrinho está vazio</span>}
         {cartValues.length > 0
-        && Object.entries(cartItems).map(([key, value]) => (
+        && cartItems.map((cartItem) => (
           <CartItem
-            key={ key }
-            id={ key }
-            qtd={ value }
+            key={ cartItem.id }
+            cartItem={ cartItem }
             getCartItems={ this.getCartItems }
           />))}
       </div>

@@ -1,29 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { addSameItem, getItems, removeItem } from '../services/saveItems';
-import { getProductFromId } from '../services/api';
 
 export default class CartItem extends React.Component {
   state = {
     productCount: 0,
-    product: {},
   }
 
   componentDidMount() {
-    const { qtd } = this.props;
-    this.getProduct();
-    this.setState({ productCount: qtd });
-  }
-
-  getProduct = async () => {
-    const { id } = this.props;
-    const product = await getProductFromId(id);
-    console.log(product);
-    this.setState({ product });
+    const { cartItem: { qtdCart } } = this.props;
+    this.setState({ productCount: qtdCart });
   }
 
   productCounter = () => {
-    const { id } = this.props;
+    const { cartItem: { id } } = this.props;
     const cartItems = getItems();
     this.setState({ productCount: cartItems ? cartItems
       .filter((item) => item.id === id).length : 0 });
@@ -31,20 +21,22 @@ export default class CartItem extends React.Component {
 
   handleClick = ({ target }) => {
     const { name } = target;
-    const { productCount, product } = this.state;
+    const { productCount } = this.state;
+    const { cartItem } = this.props;
     // const { getCartItems } = this.props;
     if (name === 'add') {
-      addSameItem(product);
+      addSameItem(cartItem);
     }
     if (name === 'remove' && productCount > 1) {
-      removeItem(product);
+      removeItem(cartItem);
     }
     // getCartItems();
     this.productCounter();
   }
 
   render() {
-    const { productCount, product: { thumbnail, id, title } } = this.state;
+    const { productCount } = this.state;
+    const { cartItem: { thumbnail, id, title } } = this.props;
     return (
       productCount > 0
       && (
@@ -74,7 +66,11 @@ export default class CartItem extends React.Component {
 }
 
 CartItem.propTypes = {
-  id: PropTypes.string.isRequired,
-  qtd: PropTypes.number.isRequired,
+  cartItem: PropTypes.shape({
+    thumbnail: PropTypes.string,
+    id: PropTypes.string,
+    title: PropTypes.string,
+    qtdCart: PropTypes.number,
+  }).isRequired,
   // getCartItems: PropTypes.func.isRequired,
 };
