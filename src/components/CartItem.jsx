@@ -23,8 +23,9 @@ export default class CartItem extends React.Component {
     const { name } = target;
     const { productCount } = this.state;
     const { cartItem } = this.props;
+    /* console.log('novo log ', name, cartItem.available_quantity, productCount); */
     // const { getCartItems } = this.props;
-    if (name === 'add') {
+    if (name === 'add' && productCount < cartItem.available_quantity) {
       addSameItem(cartItem);
     }
     if (name === 'remove' && productCount > 1) {
@@ -71,6 +72,7 @@ CartItem.propTypes = {
     id: PropTypes.string,
     title: PropTypes.string,
     qtdCart: PropTypes.number,
+    available_quantity: PropTypes.number,
   }).isRequired,
   // getCartItems: PropTypes.func.isRequired,
 };
