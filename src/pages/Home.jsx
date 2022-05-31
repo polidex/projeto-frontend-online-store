@@ -7,6 +7,7 @@ import '../stylesheets/Home.css';
 import CartLink from '../components/CartLink';
 import Category from '../components/Category';
 import { getItems } from '../services/saveItems';
+
 // import 'react-multi-carousel/lib/styles.css';
 // import Loading from '../components/Loading';
 

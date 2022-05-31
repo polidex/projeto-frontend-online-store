@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import '../stylesheets/ProductCard.css';
 import { Link } from 'react-router-dom';
 import { saveItems } from '../services/saveItems';
+import FreeShipping from './FreeShipping';
 
 export default class ProductCard extends Component {
   state = {
@@ -27,6 +28,7 @@ export default class ProductCard extends Component {
     let price = 'sem preço'; // criei esta let porque tava dando erro em alguns produtos que não tinham preço
     const { objProduct } = this.props;
     const { isFocused } = this.state;
+    console.log('Free Shipping', objProduct.shipping.free_shipping);
     if (objProduct.price) {
       price = objProduct
         .price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
@@ -49,6 +51,7 @@ export default class ProductCard extends Component {
           <img src={ objProduct.thumbnail } alt={ `Imagem de ${objProduct.title}` } />
           <p>{ `Valor ${price}` }</p>
         </Link>
+        {objProduct.shipping.free_shipping && <FreeShipping />}
         <button
           className="add_to_cart_btn"
           type="button"
@@ -74,5 +77,8 @@ ProductCard.propTypes = {
     thumbnail: PropTypes.string,
     price: PropTypes.number,
     id: PropTypes.string,
+    shipping: PropTypes.shape({
+      free_shipping: PropTypes.bool,
+    }),
   }).isRequired,
 };

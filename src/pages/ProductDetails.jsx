@@ -6,6 +6,7 @@ import CartLink from '../components/CartLink';
 import { getItems, saveItems } from '../services/saveItems';
 import '../stylesheets/ProductDetails.css';
 import ReviewProduct from '../components/ReviewProduct';
+import FreeShipping from '../components/FreeShipping';
 
 export default class ProductDetails extends React.Component {
   state = {
@@ -49,6 +50,11 @@ export default class ProductDetails extends React.Component {
     // console.log('log do state', this.state.product);
     const { product, cartQuantity, productReviews } = this.state;
     const { match: { params: { id } } } = this.props;
+    console.log('product', product);
+    let ship = false;
+    if (Object.keys(product).length !== 0) {
+      ship = product.shipping.free_shipping;
+    }
 
     return (
       <div data-testid="product">
@@ -64,6 +70,7 @@ export default class ProductDetails extends React.Component {
         <p data-testid="product-detail-name">{ product.title }</p>
         <p>{ product.price }</p>
         <img alt="imagem do produto" src={ product.thumbnail } />
+        { ship && <FreeShipping /> }
         <button
           className="add_to_cart_btn_details"
           type="button"
