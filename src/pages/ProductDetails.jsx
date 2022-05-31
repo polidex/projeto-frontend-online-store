@@ -5,6 +5,7 @@ import { getProductFromId } from '../services/api';
 import CartLink from '../components/CartLink';
 import { getItems, saveItems } from '../services/saveItems';
 import '../stylesheets/ProductDetails.css';
+import ReviewProduct from '../components/ReviewProduct';
 
 export default class ProductDetails extends React.Component {
   state = {
@@ -60,6 +61,7 @@ export default class ProductDetails extends React.Component {
         >
           Adicionar ao carrinho
         </button>
+        <ReviewProduct />
       </div>
     );
   }
