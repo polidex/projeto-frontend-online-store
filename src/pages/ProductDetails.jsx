@@ -10,12 +10,22 @@ import ReviewProduct from '../components/ReviewProduct';
 export default class ProductDetails extends React.Component {
   state = {
     product: {},
+    productReviews: [],
     cartQuantity: 0,
   }
 
   componentDidMount() {
     this.getProduct();
     this.getCartItems();
+    this.getProductReviews();
+  }
+
+  getProductReviews = () => {
+    const { match: { params: { id } } } = this.props;
+    const productReviews = JSON.parse(localStorage.getItem(`productReviews-${id}`));
+    if (productReviews) {
+      this.setState({ productReviews });
+    }
   }
 
   getCartItems = () => {
@@ -37,7 +47,8 @@ export default class ProductDetails extends React.Component {
 
   render() {
     // console.log('log do state', this.state.product);
-    const { product, cartQuantity } = this.state;
+    const { product, cartQuantity, productReviews } = this.state;
+    const { match: { params: { id } } } = this.props;
 
     return (
       <div data-testid="product">
@@ -61,7 +72,19 @@ export default class ProductDetails extends React.Component {
         >
           Adicionar ao carrinho
         </button>
-        <ReviewProduct />
+        <ReviewProduct
+          id={ id }
+          getProductReviews={ this.getProductReviews }
+        />
+        {
+          productReviews.map((review, index) => (
+            <div key={ index }>
+              <p>{ review.email }</p>
+              <p>{ review.rating }</p>
+              <p>{ review.evaluation }</p>
+            </div>
+          ))
+        }
       </div>
     );
   }
